@@ -16,17 +16,17 @@ interface ChainsPlanetaryEmblemProps {
 export function ChainsPlanetaryEmblem({ className = "w-full h-auto" }: ChainsPlanetaryEmblemProps) {
   return (
     <svg
-      viewBox="0 0 440 88"
+      viewBox="78 0 284 88"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
       {/* Subtle Coordinate Datum Line */}
-      <line x1="20" y1="44" x2="420" y2="44" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" opacity="0.22" />
+      <line x1="80" y1="44" x2="360" y2="44" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" opacity="0.22" />
 
       {/* Planetary System Orbits */}
       {/* 1. Wide Equatorial Orbit */}
-      <ellipse cx="220" cy="44" rx="142" ry="35" stroke="currentColor" strokeWidth="1.2" opacity="0.32" />
+      <ellipse cx="220" cy="44" rx="138" ry="34" stroke="currentColor" strokeWidth="1.2" opacity="0.32" />
       {/* 2. Inclined Orbit Alpha (-14 deg) */}
       <ellipse cx="220" cy="44" rx="116" ry="28" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.45" transform="rotate(-14 220 44)" />
       {/* 3. Inclined Orbit Beta (+14 deg) */}
@@ -46,8 +46,6 @@ export function ChainsPlanetaryEmblem({ className = "w-full h-auto" }: ChainsPla
 
       {/* Horizontal Blockchain Schema (Interconnecting Links) */}
       {/* Left Chain Links */}
-      <line x1="44" y1="42.5" x2="79" y2="42.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
-      <line x1="44" y1="45.5" x2="79" y2="45.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
       <line x1="91" y1="42.5" x2="134" y2="42.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
       <line x1="91" y1="45.5" x2="134" y2="45.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
       <line x1="146" y1="42.5" x2="206" y2="42.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
@@ -58,22 +56,16 @@ export function ChainsPlanetaryEmblem({ className = "w-full h-auto" }: ChainsPla
       <line x1="234" y1="45.5" x2="294" y2="45.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
       <line x1="306" y1="42.5" x2="349" y2="42.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
       <line x1="306" y1="45.5" x2="349" y2="45.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
-      <line x1="361" y1="42.5" x2="396" y2="42.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
-      <line x1="361" y1="45.5" x2="396" y2="45.5" stroke="currentColor" strokeWidth="1.2" opacity="0.75" />
 
       {/* Horizontal Chain Blocks */}
-      <polygon points="38,39 42,41.5 42,46.5 38,49 34,46.5 34,41.5" fill="#080c14" stroke="currentColor" strokeWidth="1.4" />
-      <circle cx="38" cy="44" r="1.5" fill="currentColor" />
-      <rect x="79.5" y="38.5" width="11" height="11" fill="#080c14" stroke="currentColor" strokeWidth="1.4" />
-      <rect x="82" y="41" width="6" height="6" fill="currentColor" opacity="0.9" />
+      <rect x="82.5" y="38.5" width="11" height="11" fill="#080c14" stroke="currentColor" strokeWidth="1.4" />
+      <rect x="85" y="41" width="6" height="6" fill="currentColor" opacity="0.9" />
       <rect x="134.5" y="38.5" width="11" height="11" fill="#080c14" stroke="currentColor" strokeWidth="1.4" />
       <circle cx="140" cy="44" r="2" fill="currentColor" />
       <rect x="294.5" y="38.5" width="11" height="11" fill="#080c14" stroke="currentColor" strokeWidth="1.4" />
       <circle cx="300" cy="44" r="2" fill="currentColor" />
-      <rect x="349.5" y="38.5" width="11" height="11" fill="#080c14" stroke="currentColor" strokeWidth="1.4" />
-      <rect x="352" y="41" width="6" height="6" fill="currentColor" opacity="0.9" />
-      <polygon points="402,39 406,41.5 406,46.5 402,49 398,46.5 398,41.5" fill="#080c14" stroke="currentColor" strokeWidth="1.4" />
-      <circle cx="402" cy="44" r="1.5" fill="currentColor" />
+      <rect x="346.5" y="38.5" width="11" height="11" fill="#080c14" stroke="currentColor" strokeWidth="1.4" />
+      <rect x="349" y="41" width="6" height="6" fill="currentColor" opacity="0.9" />
 
       {/* Orbiting Planetary Chain Nodes */}
       <rect x="141.5" y="16.5" width="9" height="9" fill="#080c14" stroke="currentColor" strokeWidth="1.3" />
@@ -94,8 +86,8 @@ export function ChainsPlanetaryEmblem({ className = "w-full h-auto" }: ChainsPla
       <line x1="308" y1="60" x2="308" y2="49" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
 
       {/* Minimal Tech Bracket Edge Guides [  ] */}
-      <path d="M 20 33 L 14 33 L 14 55 L 20 55" stroke="currentColor" strokeWidth="1.4" opacity="0.6" fill="none" />
-      <path d="M 420 33 L 426 33 L 426 55 L 420 55" stroke="currentColor" strokeWidth="1.4" opacity="0.6" fill="none" />
+      <path d="M 83 33 L 79 33 L 79 55 L 83 55" stroke="currentColor" strokeWidth="1.4" opacity="0.6" fill="none" />
+      <path d="M 357 33 L 361 33 L 361 55 L 357 55" stroke="currentColor" strokeWidth="1.4" opacity="0.6" fill="none" />
     </svg>
   );
 }
@@ -107,27 +99,17 @@ export function ChainsPlanetaryEmblem({ className = "w-full h-auto" }: ChainsPla
 export function ChainsPlanetaryBrandHeader() {
   return (
     <div className="flex select-none items-center gap-3 font-mono">
-      <div className="hidden w-24 shrink-0 text-stone-300 sm:block lg:w-28">
+      <div className="w-20 shrink-0 text-stone-300 sm:w-24 lg:w-28">
         <ChainsPlanetaryEmblem className="h-auto w-full transition-colors duration-200 hover:text-amber-300" />
       </div>
 
-      <div className="min-w-0 border-stone-800 sm:border-l sm:pl-3">
-        <div className="flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-          <span className="hidden lg:inline">多元連鎖惑星系</span>
-          <span className="hidden text-stone-700 lg:inline">{"//"}</span>
-          <span>Orbit intelligence</span>
+      <div className="min-w-0 border-stone-800 border-l pl-3 sm:pl-3.5">
+        <div className="whitespace-nowrap text-xs font-black uppercase leading-tight tracking-[0.08em] text-stone-100 sm:text-sm md:text-base">
+          Chains Planetary System
         </div>
 
-        <div className="mt-0.5 whitespace-nowrap text-xs font-black uppercase leading-tight tracking-[0.16em] text-stone-100 sm:text-sm">
-          Chains Planetary
-        </div>
-
-        <div className="mt-1 flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-stone-500">
-          <span className="relative flex h-2 w-2 items-center justify-center" aria-hidden="true">
-            <span className="absolute h-2 w-2 animate-ping rounded-full bg-emerald-400/50" />
-            <span className="relative h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          </span>
-          Nansen data live
+        <div className="mt-0.5 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-400 sm:text-xs">
+          powered by nansen
         </div>
       </div>
     </div>

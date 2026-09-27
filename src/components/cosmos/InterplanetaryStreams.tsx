@@ -16,7 +16,6 @@ interface InterplanetaryStreamsProps {
   onSelectFlow?: (flow: InterplanetaryFlow) => void;
   onHoverFlow?: (flow: InterplanetaryFlow | null) => void;
   onUpdateRocketPosition?: (flowKey: string, pos: [number, number, number]) => void;
-  visible: boolean;
 }
 
 // Fixed velocity for all dashed trajectories (world units per second)
@@ -112,7 +111,6 @@ export function InterplanetaryStreams({
   hoveredPlanetId,
   globalSpeed = 0.5,
   onUpdateRocketPosition,
-  visible,
 }: InterplanetaryStreamsProps) {
   const reducedMotion = useReducedMotionPreference();
   const planetMap = useMemo(() => {
@@ -124,7 +122,7 @@ export function InterplanetaryStreams({
   }, [planets]);
 
   return (
-    <group visible={visible}>
+    <group>
       {flows.map((flow, index) => {
         const targetId =
           flow.planetId ||

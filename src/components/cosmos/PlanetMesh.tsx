@@ -43,6 +43,7 @@ interface PlanetMeshProps {
   isHovered: boolean;
   isConnectedToHoveredFlow?: boolean;
   globalSpeed: number;
+  isInteractive?: boolean;
   onHover: (id: string | null) => void;
   onSelect: (planet: CosmosPlanet) => void;
   onUpdatePosition: (id: string, pos: [number, number, number]) => void;
@@ -55,6 +56,7 @@ export function PlanetMesh({
   isHovered,
   isConnectedToHoveredFlow = false,
   globalSpeed,
+  isInteractive = true,
   onHover,
   onSelect,
   onUpdatePosition,
@@ -190,15 +192,18 @@ export function PlanetMesh({
       <mesh
         rotation={[-Math.PI / 2, 0, 0]}
         onPointerOver={(e) => {
+          if (!isInteractive) return;
           e.stopPropagation();
           document.body.style.cursor = "pointer";
           onHover(planet.id);
         }}
         onPointerOut={() => {
+          if (!isInteractive) return;
           document.body.style.cursor = "auto";
           onHover(null);
         }}
         onClick={(e) => {
+          if (!isInteractive) return;
           e.stopPropagation();
           onSelect(planet);
         }}
@@ -214,15 +219,18 @@ export function PlanetMesh({
           <mesh
             ref={meshRef}
             onClick={(e) => {
+              if (!isInteractive) return;
               e.stopPropagation();
               onSelect(planet);
             }}
             onPointerOver={(e) => {
+              if (!isInteractive) return;
               e.stopPropagation();
               document.body.style.cursor = "pointer";
               onHover(planet.id);
             }}
             onPointerOut={() => {
+              if (!isInteractive) return;
               document.body.style.cursor = "auto";
               onHover(null);
             }}
@@ -316,49 +324,51 @@ export function PlanetMesh({
           )}
         </group>
 
-        {/* 3D Floating Nameplate / Status HUD (Appears only on Hover, fixed readable size) */}
-        <Html
-          position={[0, calculatedRadius + 0.6, 0]}
-          center
-          className="pointer-events-none select-none z-50"
-          style={{
-            visibility: isHovered ? "visible" : "hidden",
-            pointerEvents: "none",
-          }}
-        >
-          <div
-            className="flex flex-col items-center pointer-events-none select-none transition-all duration-150 ease-out"
+        {/* 3D Floating Nameplate / Status HUD (Appears only on Hover when interactive) */}
+        {isInteractive && (
+          <Html
+            position={[0, calculatedRadius + 0.6, 0]}
+            center
+            className="pointer-events-none select-none z-50"
             style={{
-              opacity: isHovered ? 1 : 0,
-              transform: isHovered
-                ? "translateY(-8px) scale(1)"
-                : "translateY(0px) scale(0.95)",
+              visibility: isHovered ? "visible" : "hidden",
+              pointerEvents: "none",
             }}
           >
-            {/* Primary Planet Identifier Pill */}
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-950/95 backdrop-blur-md border border-stone-700/70 shadow-2xl whitespace-nowrap">
-              <ChainLogo
-                chain={planet.id}
-                size={22}
-                className="rounded-full shrink-0 shadow-md"
-              />
-              <span className="font-mono text-sm font-semibold tracking-wider text-stone-100">
-                {planet.name}
-              </span>
-              <span className="text-xs font-mono px-2 py-0.5 rounded bg-stone-800/90 text-stone-200 border border-stone-700/50">
-                {planet.symbol}
-              </span>
-            </div>
+            <div
+              className="flex flex-col items-center pointer-events-none select-none transition-all duration-150 ease-out"
+              style={{
+                opacity: isHovered ? 1 : 0,
+                transform: isHovered
+                  ? "translateY(-8px) scale(1)"
+                  : "translateY(0px) scale(0.95)",
+              }}
+            >
+              {/* Primary Planet Identifier Pill */}
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-950/95 backdrop-blur-md border border-stone-700/70 shadow-2xl whitespace-nowrap">
+                <ChainLogo
+                  chain={planet.id}
+                  size={22}
+                  className="rounded-full shrink-0 shadow-md"
+                />
+                <span className="font-mono text-sm font-semibold tracking-wider text-stone-100">
+                  {planet.name}
+                </span>
+                <span className="text-xs font-mono px-2 py-0.5 rounded bg-stone-800/90 text-stone-200 border border-stone-700/50">
+                  {planet.symbol}
+                </span>
+              </div>
 
-            {/* Quick 24h metrics tag */}
-            <div className="mt-1 px-2.5 py-1 rounded bg-stone-950/90 backdrop-blur-sm border border-stone-800/80 text-xs font-mono text-stone-300 shadow-lg whitespace-nowrap">
-              <span className="text-stone-400">24h Vol:</span>{" "}
-              <span className="text-stone-200 font-medium">
-                ${((planet.metrics.total_dex_volume_usd || 0) / 1e6).toFixed(1)}M
-              </span>
+              {/* Quick 24h metrics tag */}
+              <div className="mt-1 px-2.5 py-1 rounded bg-stone-950/90 backdrop-blur-sm border border-stone-800/80 text-xs font-mono text-stone-300 shadow-lg whitespace-nowrap">
+                <span className="text-stone-400">24h Vol:</span>{" "}
+                <span className="text-stone-200 font-medium">
+                  ${((planet.metrics.total_dex_volume_usd || 0) / 1e6).toFixed(1)}M
+                </span>
+              </div>
             </div>
-          </div>
-        </Html>
+          </Html>
+        )}
       </group>
     </>
   );

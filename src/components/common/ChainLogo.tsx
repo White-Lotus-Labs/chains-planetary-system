@@ -87,14 +87,25 @@ const CHAIN_LOGO_URLS: Record<string, string[]> = {
     "https://cryptologos.cc/logos/optimism-ethereum-op-logo.png",
   ],
   hyperevm: [
+    "/chains/hyperevm.png",
     "https://assets.coingecko.com/markets/images/1070/large/hyperliquid.png",
     "https://hyperliquid.xyz/favicon.ico",
   ],
+  "hyper-evm": [
+    "/chains/hyperevm.png",
+    "https://assets.coingecko.com/markets/images/1070/large/hyperliquid.png",
+  ],
+  "hyper evm": [
+    "/chains/hyperevm.png",
+    "https://assets.coingecko.com/markets/images/1070/large/hyperliquid.png",
+  ],
   hyperliquid: [
+    "/chains/hyperevm.png",
     "https://assets.coingecko.com/markets/images/1070/large/hyperliquid.png",
     "https://hyperliquid.xyz/favicon.ico",
   ],
   hype: [
+    "/chains/hyperevm.png",
     "https://assets.coingecko.com/markets/images/1070/large/hyperliquid.png",
   ],
   mantle: [
@@ -227,6 +238,23 @@ function OfficialVectorFallback({ chain, className }: { chain: string; className
     );
   }
 
+  if (
+    c === "hyperevm" ||
+    c === "hyperliquid" ||
+    c === "hype" ||
+    c === "hyper-evm" ||
+    c === "hyper evm"
+  ) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src="/chains/hyperevm.png"
+        alt="HyperEVM"
+        className={className}
+      />
+    );
+  }
+
   return (
     <div className={`rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center font-mono font-bold text-stone-200 text-[10px] select-none ${className}`}>
       {chain.slice(0, 3).toUpperCase()}
@@ -235,7 +263,9 @@ function OfficialVectorFallback({ chain, className }: { chain: string; className
 }
 
 export function ChainLogo({ chain, size = 24, className = "" }: ChainLogoProps) {
-  const normalized = (chain || "").toLowerCase().trim();
+  const raw = (chain || "").toLowerCase().trim();
+  const stripped = raw.replace(/[\s_-]+/g, "");
+  const normalized = CHAIN_LOGO_URLS[raw] ? raw : (CHAIN_LOGO_URLS[stripped] ? stripped : raw);
   const urls = CHAIN_LOGO_URLS[normalized] || [];
   const [urlIndex, setUrlIndex] = useState(0);
   const [failed, setFailed] = useState(false);

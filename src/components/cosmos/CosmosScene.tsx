@@ -9,6 +9,11 @@ import { CentralStar } from "./CentralStar";
 import { PlanetMesh } from "./PlanetMesh";
 import { InterplanetaryStreams } from "./InterplanetaryStreams";
 import { CosmicStarfield } from "./CosmicStarfield";
+import {
+  CinematicDirector,
+  CinematicLetterboxOverlay,
+  PresentationData,
+} from "./CinematicDirector";
 
 interface CosmosSceneProps {
   planets: CosmosPlanet[];
@@ -16,11 +21,12 @@ interface CosmosSceneProps {
   selectedPlanet: CosmosPlanet | null;
   selectedFlow?: InterplanetaryFlow | null;
   hoveredPlanetId: string | null;
-  showFlows: boolean;
   globalSpeed: number;
+  isCinematicTour?: boolean;
   onSelectPlanet: (planet: CosmosPlanet | null) => void;
   onSelectFlow?: (flow: InterplanetaryFlow | null) => void;
   onHoverPlanet: (id: string | null) => void;
+  onExitCinematicTour?: () => void;
   onUserInteraction?: () => void;
 }
 
@@ -33,9 +39,6 @@ function getSunAwareFocus(
   tangentWeight: number,
   heightWeight: number
 ) {
-  // Use the object's orbital direction as the stable frame of reference.
-  // The camera sits mostly outside the orbit and looks back toward the sun,
-  // with a tangential offset so the star does not land directly behind the object.
   const radialFromSun = new THREE.Vector3(objectPosition.x, 0, objectPosition.z);
   if (radialFromSun.lengthSq() < 0.0001) radialFromSun.set(0, 0, 1);
   radialFromSun.normalize();
@@ -70,11 +73,10 @@ function CameraRig({
 }) {
   const controlsRef = useRef<OrbitControlsInstance>(null);
   const prevSelectionKeyRef = useRef<string | null>(null);
-  const isTransitioningRef = useRef<boolean>(false);
+  const isTransitioningRef = useRef<boolean>(true);
   const prevFollowPosRef = useRef<THREE.Vector3 | null>(null);
   const offsetXRef = useRef<number>(0);
 
-  // When selectedPlanet or selectedFlow changes, trigger a smooth transition
   useEffect(() => {
     const curKey = selectedPlanet
       ? `planet:${selectedPlanet.id}`
@@ -89,7 +91,6 @@ function CameraRig({
     }
   }, [selectedPlanet, selectedFlow]);
 
-  // When user interacts (touches, drags, wheels), immediately stop any automated transition
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
@@ -108,7 +109,6 @@ function CameraRig({
     const controls = controlsRef.current;
     if (!controls) return;
 
-    // Viewport Offset: Center focused celestial object to the left while detail card is on the right
     const isFocusActive = Boolean(selectedPlanet || selectedFlow);
     const targetOffset =
       isFocusActive && window.innerWidth >= 768
@@ -146,13 +146,10 @@ function CameraRig({
           controls.target.lerp(focus.target, delta * 3.2);
           state.camera.position.lerp(focus.cameraPosition, delta * 2.45);
 
-          // Once arrived close enough, transition is complete
           if (state.camera.position.distanceTo(focus.cameraPosition) < 0.55) {
             isTransitioningRef.current = false;
           }
         } else {
-          // In orbit: translate camera and target along with the planet's orbital revolution,
-          // perfectly preserving the user's manual zoom distance, pitch, and yaw!
           if (prevFollowPosRef.current) {
             const deltaPos = currentPlanetPos.clone().sub(prevFollowPosRef.current);
             controls.target.add(deltaPos);
@@ -180,12 +177,10 @@ function CameraRig({
           controls.target.lerp(focus.target, delta * 3.6);
           state.camera.position.lerp(focus.cameraPosition, delta * 2.8);
 
-          // Once arrived close enough, transition is complete
           if (state.camera.position.distanceTo(focus.cameraPosition) < 0.65) {
             isTransitioningRef.current = false;
           }
         } else {
-          // Escorting rocket flight: lock camera delta to live rocket motion
           if (prevFollowPosRef.current) {
             const deltaPos = currentRocketPos.clone().sub(prevFollowPosRef.current);
             controls.target.add(deltaPos);
@@ -198,7 +193,6 @@ function CameraRig({
         prevFollowPosRef.current = currentRocketPos.clone();
       }
     } else {
-      // In macro Solar System view
       if (isTransitioningRef.current) {
         const defaultTarget = new THREE.Vector3(0, 0, 0);
         const defaultCamPos = new THREE.Vector3(0, 95, 175);
@@ -206,15 +200,12 @@ function CameraRig({
         controls.target.lerp(defaultTarget, delta * 2.5);
         state.camera.position.lerp(defaultCamPos, delta * 2.0);
 
-        // When arrived, end transition so user has full, unrestricted control
         if (state.camera.position.distanceTo(defaultCamPos) < 1.0) {
           isTransitioningRef.current = false;
           controls.target.copy(defaultTarget);
           state.camera.position.copy(defaultCamPos);
         }
       }
-      // When NOT transitioning in macro view: DO NOT TOUCH camera or target!
-      // User can zoom in, zoom out, rotate at will and it will NEVER roll back!
     }
 
     controls.update();
@@ -239,20 +230,21 @@ export function CosmosScene({
   selectedPlanet,
   selectedFlow = null,
   hoveredPlanetId,
-  showFlows,
   globalSpeed,
+  isCinematicTour = false,
   onSelectPlanet,
   onSelectFlow,
   onHoverPlanet,
+  onExitCinematicTour,
   onUserInteraction,
 }: CosmosSceneProps) {
   const [positions, setPositions] = useState<Record<string, [number, number, number]>>({});
   const [hoveredFlow, setHoveredFlow] = useState<InterplanetaryFlow | null>(null);
+  const [currentPresentation, setCurrentPresentation] = useState<PresentationData | null>(null);
   const rocketPositionsRef = useRef<Record<string, [number, number, number]>>({});
 
   const handleUpdatePosition = useCallback((id: string, pos: [number, number, number]) => {
     setPositions((prev) => {
-      // Only update if changed sufficiently to prevent unnecessary re-renders
       const cur = prev[id];
       if (
         !cur ||
@@ -293,27 +285,37 @@ export function CosmosScene({
       >
         <color attach="background" args={["#02040a"]} />
 
-        {/* Infinite Deep Space Background Stars (Camera-Anchored, Anti-Aliased, Non-Flickering) */}
+        {/* Infinite Deep Space Background Stars */}
         <CosmicStarfield />
 
-        {/* Global Balanced Cosmic Lighting (Illuminates planetary dark sides & objects) */}
+        {/* Global Balanced Cosmic Lighting */}
         <ambientLight color="#AFC6E8" intensity={0.38} />
-        <hemisphereLight
-          args={["#B9D5F2", "#090E19", 0.4]}
-        />
+        <hemisphereLight args={["#B9D5F2", "#090E19", 0.4]} />
         <directionalLight
           position={[30, 80, 50]}
           intensity={0.42}
           color="#FFF3DA"
         />
 
-        {/* Dynamic Camera Rig & Orbit Controls */}
-        <CameraRig
-          selectedPlanet={selectedPlanet}
-          planetPositions={positions}
-          selectedFlow={selectedFlow}
-          rocketPositionsRef={rocketPositionsRef}
-        />
+        {/* Dynamic Camera: Presentation Tour or Interactive Orbit Controls */}
+        {isCinematicTour ? (
+          <CinematicDirector
+            isActive={isCinematicTour}
+            planets={planets}
+            flows={flows}
+            planetPositions={positions}
+            rocketPositionsRef={rocketPositionsRef}
+            onExit={onExitCinematicTour || (() => {})}
+            onPresentationChange={setCurrentPresentation}
+          />
+        ) : (
+          <CameraRig
+            selectedPlanet={selectedPlanet}
+            planetPositions={positions}
+            selectedFlow={selectedFlow}
+            rocketPositionsRef={rocketPositionsRef}
+          />
+        )}
 
         {/* Central Star Core */}
         <CentralStar />
@@ -330,19 +332,18 @@ export function CosmosScene({
           onSelectFlow={onSelectFlow}
           onHoverFlow={setHoveredFlow}
           onUpdateRocketPosition={handleUpdateRocketPosition}
-          visible={showFlows}
         />
 
         {/* All Planetary Ecosystems */}
         {planets.map((planet, index) => {
-          // Golden angle distribution (~137.5 deg) ensures natural celestial dispersion without clustering
           const initialAngle = index * 2.399963;
-          const isSelected = selectedPlanet?.id === planet.id;
-          const isHovered = hoveredPlanetId === planet.id;
+          const isSelected = !isCinematicTour && selectedPlanet?.id === planet.id;
+          const isHovered = !isCinematicTour && hoveredPlanetId === planet.id;
           const isConnectedToHoveredFlow =
-            hoveredFlow?.planetId === planet.id ||
-            hoveredFlow?.fromPlanetId === planet.id ||
-            hoveredFlow?.toPlanetId === planet.id;
+            !isCinematicTour &&
+            (hoveredFlow?.planetId === planet.id ||
+              hoveredFlow?.fromPlanetId === planet.id ||
+              hoveredFlow?.toPlanetId === planet.id);
 
           return (
             <PlanetMesh
@@ -353,6 +354,7 @@ export function CosmosScene({
               isHovered={isHovered}
               isConnectedToHoveredFlow={isConnectedToHoveredFlow}
               globalSpeed={globalSpeed}
+              isInteractive={!isCinematicTour}
               onHover={onHoverPlanet}
               onSelect={onSelectPlanet}
               onUpdatePosition={handleUpdatePosition}
@@ -360,6 +362,13 @@ export function CosmosScene({
           );
         })}
       </Canvas>
+
+      {/* Clean, Data-Dense Executive Presentation Overlay */}
+      <CinematicLetterboxOverlay
+        isActive={isCinematicTour}
+        data={currentPresentation}
+        onExit={onExitCinematicTour || (() => {})}
+      />
     </div>
   );
 }

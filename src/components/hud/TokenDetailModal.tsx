@@ -5,19 +5,35 @@ import { SmartMoneyHolding } from "@/types/cosmos";
 import {
   Calendar,
   Check,
-  Coins,
   Copy,
   ExternalLink,
-  Layers,
+  PieChart,
   ShieldCheck,
   TrendingDown,
   TrendingUp,
+  Users,
   X,
 } from "lucide-react";
+import { ChainLogo } from "@/components/common/ChainLogo";
 
 interface TokenDetailModalProps {
   token: SmartMoneyHolding | null;
   onClose: () => void;
+}
+
+function formatUsd(value: number): string {
+  const abs = Math.abs(value);
+  if (abs >= 1e9) return `$${(abs / 1e9).toFixed(2)}B`;
+  if (abs >= 1e6) return `$${(abs / 1e6).toFixed(2)}M`;
+  if (abs >= 1e3) return `$${(abs / 1e3).toFixed(1)}K`;
+  return `$${abs.toFixed(0)}`;
+}
+
+function formatAge(days?: number): string {
+  if (!days) return "—";
+  if (days >= 365) return `${(days / 365).toFixed(1)}y`;
+  if (days >= 30) return `${Math.floor(days / 30)}mo`;
+  return `${days}d`;
 }
 
 export function TokenDetailModal({ token, onClose }: TokenDetailModalProps) {
@@ -69,6 +85,7 @@ export function TokenDetailModal({ token, onClose }: TokenDetailModalProps) {
   if (!token) return null;
 
   const isPositive = token.balance_24h_percent_change >= 0;
+  const changePct = (token.balance_24h_percent_change * 100).toFixed(2);
 
   const copyAddress = async () => {
     await navigator.clipboard.writeText(token.token_address);
@@ -88,47 +105,63 @@ export function TokenDetailModal({ token, onClose }: TokenDetailModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="token-dialog-title"
-        className="hud-scrollbar relative flex max-h-[88dvh] w-full max-w-lg flex-col gap-4 overflow-y-auto border border-stone-700/80 bg-[#090d15]/98 p-5 font-mono text-stone-200 shadow-2xl sm:p-6"
+        className="hud-scrollbar relative flex max-h-[88dvh] w-full max-w-md flex-col gap-0 overflow-y-auto border border-stone-700/80 bg-[#090d15]/98 font-mono text-stone-200 shadow-2xl"
       >
-        <div className="hidden items-center justify-between border-b border-stone-800 pb-2 text-[9px] uppercase tracking-[0.14em] text-stone-500 sm:flex">
+        {/* Header bar */}
+        <div className="flex items-center justify-between border-b border-stone-800/80 px-4 py-2.5 text-[9px] uppercase tracking-[0.14em] text-stone-500">
           <span className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 bg-amber-400" />
-            Smart money asset record
+            Smart Money Asset Record
           </span>
-          <span>Powered by Nansen</span>
+          <span className="text-stone-600">Powered by Nansen</span>
         </div>
 
+        {/* Close button */}
         <button
           ref={closeButtonRef}
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-stone-700/80 bg-stone-900/80 text-stone-400 transition-colors hover:border-amber-400/70 hover:text-amber-300 sm:right-5 sm:top-5"
+          className="absolute right-4 top-10 flex h-9 w-9 items-center justify-center border border-stone-700/80 bg-stone-900/80 text-stone-400 transition-colors hover:border-amber-400/70 hover:text-amber-300"
           aria-label="Close token details"
           title="Close token details"
         >
-          <X className="h-4 w-4" />
+          <X className="h-3.5 w-3.5" />
         </button>
 
-        <header className="flex items-center gap-3.5 pr-12">
-          <div className="flex h-13 w-13 shrink-0 items-center justify-center overflow-hidden border border-stone-700 bg-stone-900 px-1 text-sm font-black uppercase tracking-tight text-amber-300 sm:h-14 sm:w-14">
-            {token.token_symbol.slice(0, 3)}
+        {/* Token identity */}
+        <div className="flex items-center gap-4 px-5 py-5 pr-16">
+          {/* Chain logo + symbol initials stacked */}
+          <div className="relative shrink-0">
+            <div className="flex h-14 w-14 items-center justify-center border border-stone-700 bg-stone-900 text-xs font-black uppercase tracking-tight text-amber-300">
+              {token.token_symbol.slice(0, 4)}
+            </div>
+            <div className="absolute -bottom-1.5 -right-1.5">
+              <ChainLogo chain={token.chain} size={22} className="border border-stone-900 shadow" />
+            </div>
           </div>
+
           <div className="min-w-0">
-            <h2 id="token-dialog-title" className="truncate text-xl font-black uppercase tracking-[0.08em] text-stone-100 sm:text-2xl">
+            <h2
+              id="token-dialog-title"
+              className="truncate text-2xl font-black uppercase tracking-[0.06em] text-stone-100"
+            >
               ${token.token_symbol}
             </h2>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-stone-500 sm:text-xs">
-              {token.chain} <span className="text-stone-700">/</span> Smart money holding
+            <p className="mt-1 flex items-center gap-1.5 text-[10px] uppercase tracking-[0.12em] text-stone-500">
+              <span className="capitalize">{token.chain}</span>
+              <span className="text-stone-700">/</span>
+              <span>Smart Money Holding</span>
             </p>
           </div>
-        </header>
+        </div>
 
+        {/* Sectors */}
         {token.token_sectors && token.token_sectors.length > 0 && (
-          <div className="flex flex-wrap gap-1.5" aria-label="Token sectors">
+          <div className="flex flex-wrap gap-1.5 border-t border-stone-800/60 px-5 py-3" aria-label="Token sectors">
             {token.token_sectors.map((sector) => (
               <span
                 key={sector}
-                className="border border-stone-800 bg-stone-900/70 px-2 py-1 text-[10px] uppercase tracking-[0.1em] text-stone-400"
+                className="border border-stone-800 bg-stone-900/70 px-2 py-0.5 text-[9px] uppercase tracking-[0.1em] text-stone-400"
               >
                 {sector}
               </span>
@@ -136,81 +169,113 @@ export function TokenDetailModal({ token, onClose }: TokenDetailModalProps) {
           </div>
         )}
 
-        <section aria-label="Token metrics" className="grid grid-cols-2 border border-stone-800/90 bg-[#0e131d]/45">
-          <div className="border-b border-r border-stone-800/90 p-3.5">
-            <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-500">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              Holdings
+        {/* Metrics grid */}
+        <section
+          aria-label="Token metrics"
+          className="grid grid-cols-2 border-t border-stone-800/60"
+        >
+          {/* Holdings */}
+          <div className="border-b border-r border-stone-800/60 p-4">
+            <span className="flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-stone-500">
+              <ShieldCheck className="h-3 w-3" />
+              SM Holdings
             </span>
-            <div className="mt-1.5 text-xl font-bold tabular-nums text-stone-100 sm:text-2xl">
-              ${token.value_usd.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+            <div className="mt-2 text-2xl font-bold tabular-nums text-stone-100">
+              {formatUsd(token.value_usd)}
             </div>
-            <div className={`mt-1 flex items-center gap-1 text-[11px] font-semibold tabular-nums ${isPositive ? "text-emerald-400" : "text-rose-400"}`}>
-              {isPositive ? <TrendingUp className="h-3.5 w-3.5" /> : <TrendingDown className="h-3.5 w-3.5" />}
-              {isPositive ? "+" : ""}{(token.balance_24h_percent_change * 100).toFixed(2)}% · 24H
+            <div
+              className={`mt-1 flex items-center gap-1 text-[11px] font-semibold tabular-nums ${
+                isPositive ? "text-emerald-400" : "text-rose-400"
+              }`}
+            >
+              {isPositive ? (
+                <TrendingUp className="h-3 w-3" />
+              ) : (
+                <TrendingDown className="h-3 w-3" />
+              )}
+              {isPositive ? "+" : ""}{changePct}% · 24h
             </div>
           </div>
 
-          <div className="border-b border-stone-800/90 p-3.5">
-            <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-500">
-              <Coins className="h-3.5 w-3.5" />
-              Smart wallets
+          {/* Smart wallets */}
+          <div className="border-b border-stone-800/60 p-4">
+            <span className="flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-stone-500">
+              <Users className="h-3 w-3" />
+              Smart Wallets
             </span>
-            <div className="mt-1.5 text-xl font-bold tabular-nums text-stone-100 sm:text-2xl">
-              {token.holders_count}
+            <div className="mt-2 text-2xl font-bold tabular-nums text-stone-100">
+              {token.holders_count.toLocaleString()}
             </div>
-            <div className="mt-1 text-[10px] uppercase tracking-[0.1em] text-stone-500">Tracked entities</div>
-          </div>
-
-          <div className="border-r border-stone-800/90 p-3.5">
-            <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-500">
-              <Layers className="h-3.5 w-3.5" />
-              Market FDV
-            </span>
-            <div className="mt-1.5 text-base font-bold tabular-nums text-stone-100">
-              {token.market_cap_usd ? `$${(token.market_cap_usd / 1e6).toFixed(1)}M` : "N/A"}
+            <div className="mt-1 text-[9px] uppercase tracking-[0.1em] text-stone-500">
+              Tracked entities
             </div>
           </div>
 
-          <div className="p-3.5">
-            <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-500">
-              <Calendar className="h-3.5 w-3.5" />
-              Token age
+          {/* Market cap */}
+          <div className="border-r border-stone-800/60 p-4">
+            <span className="flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-stone-500">
+              <PieChart className="h-3 w-3" />
+              Market Cap
             </span>
-            <div className="mt-1.5 text-base font-bold tabular-nums text-stone-100">
-              {token.token_age_days ? `${token.token_age_days} days` : "Active"}
+            <div className="mt-2 text-base font-bold tabular-nums text-stone-100">
+              {token.market_cap_usd ? formatUsd(token.market_cap_usd) : "—"}
             </div>
+          </div>
+
+          {/* Token age + share */}
+          <div className="p-4">
+            <span className="flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-stone-500">
+              <Calendar className="h-3 w-3" />
+              Token Age
+            </span>
+            <div className="mt-2 text-base font-bold tabular-nums text-stone-100">
+              {formatAge(token.token_age_days)}
+            </div>
+            {token.share_of_holdings_percent > 0 && (
+              <div className="mt-1 text-[9px] uppercase tracking-[0.1em] text-stone-500">
+                {(token.share_of_holdings_percent * 100).toFixed(3)}% of portfolio
+              </div>
+            )}
           </div>
         </section>
 
-        <section className="flex items-center justify-between gap-3 border border-stone-800/80 bg-[#0e131d]/30 p-3" aria-label="Contract address">
+        {/* Contract address */}
+        <section
+          className="flex items-center justify-between gap-3 border-t border-stone-800/60 bg-[#0e131d]/30 px-4 py-3"
+          aria-label="Contract address"
+        >
           <div className="min-w-0">
-            <div className="text-[9px] uppercase tracking-[0.14em] text-stone-500">Contract address</div>
-            <div className="mt-1 truncate text-xs text-stone-300 sm:text-sm">{token.token_address}</div>
+            <div className="text-[9px] uppercase tracking-[0.14em] text-stone-500">
+              Contract
+            </div>
+            <div className="mt-1 truncate text-[11px] text-stone-400">
+              {token.token_address}
+            </div>
           </div>
           <button
             type="button"
             onClick={copyAddress}
-            className={`flex min-h-10 shrink-0 items-center gap-1.5 border px-3 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
+            className={`flex min-h-9 shrink-0 items-center gap-1.5 border px-3 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
               copied
                 ? "border-emerald-500/45 bg-emerald-950/40 text-emerald-300"
                 : "border-stone-700 bg-stone-900/80 text-stone-300 hover:border-amber-400/70 hover:text-amber-300"
             }`}
             aria-label="Copy contract address"
           >
-            {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+            {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
             {copied ? "Copied" : "Copy"}
           </button>
         </section>
 
+        {/* CTA */}
         <a
           href={`https://app.nansen.ai/token-god-mode?token_address=${token.token_address}&chain=${token.chain}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex min-h-12 w-full items-center justify-center gap-2 bg-amber-400 px-4 text-sm font-bold uppercase tracking-[0.08em] text-stone-950 transition-colors hover:bg-amber-300"
+          className="group flex min-h-11 w-full items-center justify-center gap-2 bg-amber-400 px-4 text-sm font-bold uppercase tracking-[0.08em] text-stone-950 transition-colors hover:bg-amber-300"
         >
           Open in Token God Mode
-          <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
       </div>
     </div>

@@ -4,6 +4,8 @@ import holdingsCache from "@/data/holdings-cache.json";
 import { buildCosmosUniverse, calculateNansenCapitalFlows } from "@/lib/cosmos-engine";
 import { ChainMetrics, ScalingMetric, SmartMoneyHolding } from "@/types/cosmos";
 
+const DATA_REVALIDATION_SECONDS = 5 * 60;
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const scalingMetric = (searchParams.get("scaling") as ScalingMetric) || "dexVolume";
@@ -13,11 +15,17 @@ export async function GET(request: Request) {
   let holdingsMap: Record<string, SmartMoneyHolding[]> =
     (holdingsCache as Record<string, SmartMoneyHolding[]>) || {};
 
-  // Optional live refresh using Nansen API key
-  if (shouldRefresh && process.env.NANSEN_API_KEY) {
+  // Load live data on every request, with Next.js caching the upstream response
+  // for five minutes. A manual refresh bypasses that cache.
+  if (process.env.NANSEN_API_KEY) {
     try {
+      const fetchOptions: RequestInit = shouldRefresh
+        ? { cache: "no-store" }
+        : { next: { revalidate: DATA_REVALIDATION_SECONDS } };
+
       const [rankRes, holdingsRes] = await Promise.allSettled([
         fetch("https://api.nansen.ai/api/v1/chains/chain-rank", {
+          ...fetchOptions,
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -26,6 +34,7 @@ export async function GET(request: Request) {
           body: JSON.stringify({ timeframe: 7 }),
         }),
         fetch("https://api.nansen.ai/api/v1/smart-money/holdings", {
+          ...fetchOptions,
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -1,6 +1,7 @@
 "use client";
 
-import { CircleHelp, Film, Layers, RefreshCw } from "lucide-react";
+import { CircleHelp, Film, Layers } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { ChainsPlanetaryBrandHeader } from "@/components/common/ChainsPlanetaryLogo";
 import { CapitalMigrationDropdown } from "@/components/hud/CapitalMigrationHUD";
@@ -9,24 +10,45 @@ import { CosmosPlanet } from "@/types/cosmos";
 interface CosmosHeaderProps {
   planets: CosmosPlanet[];
   showHints: boolean;
-  isRefreshing?: boolean;
+  lastSync?: string | null;
   isCinematicTour?: boolean;
   onSelectPlanet: (planet: CosmosPlanet) => void;
   onToggleHints: () => void;
   onToggleCinematicTour?: () => void;
-  onRefreshData?: () => void;
+}
+
+function formatRelativeTime(timestamp: string | null | undefined) {
+  if (!timestamp) return "—";
+
+  const elapsedSeconds = Math.max(0, Math.floor((Date.now() - new Date(timestamp).getTime()) / 1000));
+  if (elapsedSeconds < 60) return "just now";
+  const elapsedMinutes = Math.floor(elapsedSeconds / 60);
+  if (elapsedMinutes < 60) return `${elapsedMinutes} min ago`;
+  const elapsedHours = Math.floor(elapsedMinutes / 60);
+  return `${elapsedHours} hr ago`;
 }
 
 export function CosmosHeader({
   planets,
   showHints,
-  isRefreshing = false,
+  lastSync,
   isCinematicTour = false,
   onSelectPlanet,
   onToggleHints,
   onToggleCinematicTour,
-  onRefreshData,
 }: CosmosHeaderProps) {
+  const [, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setNow(Date.now());
+    }, 30_000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const relativeLastSync = formatRelativeTime(lastSync);
+
   return (
     <header className="pointer-events-none absolute inset-x-0 top-0 z-30 p-3 font-mono sm:p-4">
       <div className="flex items-start justify-between gap-2 sm:gap-4">
@@ -72,28 +94,13 @@ export function CosmosHeader({
             </button>
           )}
 
-          {/* Sync Nansen Data */}
-          {onRefreshData && (
-            <button
-              type="button"
-              onClick={onRefreshData}
-              disabled={isRefreshing}
-              className="group flex min-w-11 items-center justify-center gap-2 px-3 text-xs font-semibold uppercase tracking-wider text-stone-300 transition-colors hover:bg-stone-900/80 hover:text-stone-100 focus-visible:z-10 disabled:cursor-wait disabled:opacity-50 sm:min-w-12 lg:px-4"
-              title="Refresh and sync data with Nansen API"
-              aria-label={isRefreshing ? "Syncing Nansen data" : "Sync Nansen data"}
-            >
-              <RefreshCw
-                className={`h-4 w-4 text-stone-400 ${
-                  isRefreshing
-                    ? "animate-spin"
-                    : "group-hover:rotate-180 transition-transform duration-500"
-                }`}
-              />
-              <span className="hidden lg:inline">
-                {isRefreshing ? "SYNCING..." : "SYNC NANSEN"}
-              </span>
-            </button>
-          )}
+          {/* Last data sync */}
+          <div
+            className="hidden items-center px-3 text-[9px] font-semibold uppercase tracking-[0.12em] text-stone-500 xl:flex lg:px-4"
+            title={lastSync ? `Data loaded at ${new Date(lastSync).toLocaleString()}` : "Data sync pending"}
+          >
+            <span>Last sync: {relativeLastSync}</span>
+          </div>
 
           {/* Migration Dropdown */}
           <CapitalMigrationDropdown

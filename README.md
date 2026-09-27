@@ -13,7 +13,7 @@ Press **[C]** to enter **Cinematic Tour** — an autonomous presentation mode th
 | `POST /api/v1/chains/chain-rank` | POST | Fetches per-chain TVL, 24h DEX volume, transaction count, active addresses, and revenue — used to size planets, set orbit speeds, and compute bullish/bearish momentum signals. |
 | `POST /api/v1/smart-money/holdings` | POST | Fetches smart money token holdings per chain — displayed in the chain spotlight card as "Smart Money Focus" tokens with 24h change. |
 
-Data is shipped as a static cache (`src/data/chains-cache.json`, `src/data/holdings-cache.json`) for offline use. A live refresh can be triggered from the UI if `NANSEN_API_KEY` is set.
+Data is shipped with fallback snapshots (`src/data/chains-cache.json`, `src/data/holdings-cache.json`) for offline use. When `NANSEN_API_KEY` is set, each request loads the latest data from Nansen and caches the upstream responses for five minutes. The UI's refresh action bypasses that cache and requests fresh data immediately; if a live request fails, the bundled snapshots are used.
 
 ---
 

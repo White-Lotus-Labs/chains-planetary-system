@@ -73,33 +73,7 @@ export function CosmosApp() {
     });
   }, []);
 
-  const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
-
-  const loadCosmosData = async (refresh = false) => {
-    if (refresh) setIsRefreshing(true);
-    try {
-      const res = await fetch(
-        `/api/cosmos/data?scaling=${scalingMetric}${refresh ? "&refresh=true" : ""}`
-      );
-      const data = await res.json();
-      if (data.planets) {
-        setPlanets(data.planets);
-        setFlows(data.flows || []);
-        setSelectedPlanet((current) => {
-          if (!current) return current;
-          return (
-            data.planets.find((planet: CosmosPlanet) => planet.id === current.id) ||
-            current
-          );
-        });
-      }
-    } catch (err) {
-      console.error("Failed to load cosmos universe data:", err);
-    } finally {
-      setLoading(false);
-      if (refresh) setIsRefreshing(false);
-    }
-  };
+  const [lastSync, setLastSync] = useState<string | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -112,6 +86,9 @@ export function CosmosApp() {
         if (!data.planets) return;
         setPlanets(data.planets);
         setFlows(data.flows || []);
+        if (data.timestamp) {
+          setLastSync(data.timestamp);
+        }
       })
       .catch((error) => {
         if (error instanceof DOMException && error.name === "AbortError") return;
@@ -222,12 +199,11 @@ export function CosmosApp() {
         <CosmosHeader
           planets={planets}
           showHints={showHints}
-          isRefreshing={isRefreshing}
+          lastSync={lastSync}
           isCinematicTour={isCinematicTour}
           onSelectPlanet={handleSelectPlanet}
           onToggleHints={() => setShowHints((current) => !current)}
           onToggleCinematicTour={handleToggleCinematicTour}
-          onRefreshData={() => loadCosmosData(true)}
         />
       )}
 

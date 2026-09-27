@@ -28,6 +28,7 @@ interface CosmosSceneProps {
   onHoverPlanet: (id: string | null) => void;
   onExitCinematicTour?: () => void;
   onUserInteraction?: () => void;
+  onSceneReady?: () => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -237,6 +238,7 @@ export function CosmosScene({
   onHoverPlanet,
   onExitCinematicTour,
   onUserInteraction,
+  onSceneReady,
 }: CosmosSceneProps) {
   const [positions, setPositions] = useState<Record<string, [number, number, number]>>({});
   const [hoveredFlow, setHoveredFlow] = useState<InterplanetaryFlow | null>(null);
@@ -281,6 +283,7 @@ export function CosmosScene({
         }}
         onCreated={({ gl }) => {
           gl.toneMappingExposure = 1.08;
+          onSceneReady?.();
         }}
       >
         <color attach="background" args={["#02040a"]} />

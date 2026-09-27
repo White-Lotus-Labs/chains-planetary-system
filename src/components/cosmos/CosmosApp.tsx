@@ -44,6 +44,7 @@ export function CosmosApp() {
   const [showHints, setShowHints] = useState<boolean>(true);
   const globalSpeed = 0.5;
   const [loading, setLoading] = useState<boolean>(true);
+  const [sceneReady, setSceneReady] = useState<boolean>(false);
   const [showLoader, setShowLoader] = useState<boolean>(true);
   const [loaderFading, setLoaderFading] = useState<boolean>(false);
   const [isCinematicTour, setIsCinematicTour] = useState<boolean>(false);
@@ -103,7 +104,7 @@ export function CosmosApp() {
 
   // Trigger fade-out as soon as data is ready
   useEffect(() => {
-    if (!loading) {
+    if (!loading && sceneReady) {
       const fadeTimer = setTimeout(() => setLoaderFading(true), 100);
       const removeTimer = setTimeout(() => setShowLoader(false), 900);
       return () => {
@@ -111,7 +112,7 @@ export function CosmosApp() {
         clearTimeout(removeTimer);
       };
     }
-  }, [loading]);
+  }, [loading, sceneReady]);
 
   // Global cinematic hotkeys: C for Cinematic Tour, Esc to cancel
   useEffect(() => {
@@ -191,6 +192,7 @@ export function CosmosApp() {
           onHoverPlanet={setHoveredPlanetId}
           onExitCinematicTour={handleExitCinematicTour}
           onUserInteraction={() => setShowHints(false)}
+          onSceneReady={() => setSceneReady(true)}
         />
       )}
 

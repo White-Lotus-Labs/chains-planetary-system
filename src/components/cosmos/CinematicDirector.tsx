@@ -168,13 +168,13 @@ export function CinematicDirector({
     // Slide 1: Global Ecosystem Presentation
     list.push({
       id: "ecosystem_overview",
-      duration: 12,
+      duration: 8,
       type: "ecosystem",
       cameraMode: "macro",
       data: {
         index: 1,
         total: 1, // Will be updated below
-        duration: 12,
+        duration: 8,
         type: "ecosystem",
         ecosystem: ecosystemStats,
       },
@@ -195,14 +195,14 @@ export function CinematicDirector({
       // Part A: Individual Chain Spotlight
       list.push({
         id: `chain_${p.id}`,
-        duration: 11,
+        duration: 7,
         type: "chain",
         cameraMode: camMode,
         planetId: p.id,
         data: {
           index: list.length + 1,
           total: 1,
-          duration: 11,
+          duration: 7,
           type: "chain",
           chain: {
             id: p.id,
@@ -255,7 +255,7 @@ export function CinematicDirector({
 
       list.push({
         id: `capital_migration_${p.id}`,
-        duration: 9,
+        duration: 6,
         type: "corridor",
         cameraMode: "shuttle",
         planetId: p.id,
@@ -263,7 +263,7 @@ export function CinematicDirector({
         data: {
           index: list.length + 1,
           total: 1,
-          duration: 9,
+          duration: 6,
           type: "corridor",
           corridor: {
             targetChainId: p.id,

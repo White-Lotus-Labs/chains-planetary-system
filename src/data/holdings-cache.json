@@ -1,0 +1,861 @@
+{
+  "ethereum": [
+    {
+      "chain": "ethereum",
+      "token_address": "0xa0df17b5ac76ababa36e1450e2cbcd18a620c845",
+      "token_symbol": "FWA",
+      "token_sectors": [
+        "NFTs",
+        "NFTFi"
+      ],
+      "value_usd": 803376.0514064885,
+      "balance_24h_percent_change": 0.019781720321852204,
+      "holders_count": 32,
+      "share_of_holdings_percent": 0.0020030263741612777,
+      "token_age_days": 70,
+      "market_cap_usd": 16756747.4273482
+    },
+    {
+      "chain": "ethereum",
+      "token_address": "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+      "token_symbol": "FP",
+      "token_sectors": [
+        "GameFi",
+        "NFTs"
+      ],
+      "value_usd": 1167560.7180894972,
+      "balance_24h_percent_change": 0.00981271641269614,
+      "holders_count": 19,
+      "share_of_holdings_percent": 0.0029110338896381183,
+      "token_age_days": 355,
+      "market_cap_usd": 20582108.6671485
+    },
+    {
+      "chain": "ethereum",
+      "token_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+      "token_symbol": "UNI",
+      "token_sectors": [
+        "Decentralised Exchanges"
+      ],
+      "value_usd": 1356399.3125932114,
+      "balance_24h_percent_change": -0.03545647132082786,
+      "holders_count": 16,
+      "share_of_holdings_percent": 0.003381857838881163,
+      "token_age_days": 2201,
+      "market_cap_usd": 5732181821.75199
+    },
+    {
+      "chain": "ethereum",
+      "token_address": "0xc50673edb3a7b94e8cad8a7d4e0cd68864e33edf",
+      "token_symbol": "PNKSTR",
+      "token_sectors": [],
+      "value_usd": 120127.29519379864,
+      "balance_24h_percent_change": -0.0725344790899213,
+      "holders_count": 12,
+      "share_of_holdings_percent": 0.00029950872957761233,
+      "token_age_days": 383,
+      "market_cap_usd": 16662605.4955354
+    },
+    {
+      "chain": "ethereum",
+      "token_address": "0x57e114b691db790c35207b2e685d4a43181e6061",
+      "token_symbol": "ENA",
+      "token_sectors": [
+        "Stablecoin Issuers"
+      ],
+      "value_usd": 710222.8024248211,
+      "balance_24h_percent_change": -0.043819747033654904,
+      "holders_count": 11,
+      "share_of_holdings_percent": 0.0017707709886261628,
+      "token_age_days": 933,
+      "market_cap_usd": 2191826998.27127
+    },
+    {
+      "chain": "ethereum",
+      "token_address": "0x232ce3bd40fcd6f80f3d55a522d03f25df784ee2",
+      "token_symbol": "LIT",
+      "token_sectors": [
+        "Decentralised Exchanges",
+        "Perps, Options and Derivatives",
+        "Scaling & Connectivity"
+      ],
+      "value_usd": 572588.4431328073,
+      "balance_24h_percent_change": 0.05087073650029393,
+      "holders_count": 11,
+      "share_of_holdings_percent": 0.001427612574618122,
+      "token_age_days": 332,
+      "market_cap_usd": 1353561270.95586
+    },
+    {
+      "chain": "ethereum",
+      "token_address": "0xdd3b11ef34cd511a2da159034a05fcb94d806686",
+      "token_symbol": "REKT",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 253659.01925323543,
+      "balance_24h_percent_change": -0.032663045390378224,
+      "holders_count": 10,
+      "share_of_holdings_percent": 0.0006324382021577526,
+      "token_age_days": 678,
+      "market_cap_usd": 45040313.6270333
+    },
+    {
+      "chain": "ethereum",
+      "token_address": "0x47accd13264d8f954105256faac8376ce6a55999",
+      "token_symbol": "SEND",
+      "token_sectors": [],
+      "value_usd": 134381.91325429358,
+      "balance_24h_percent_change": 0.4199732565930395,
+      "holders_count": 10,
+      "share_of_holdings_percent": 0.0003350492163506245,
+      "token_age_days": 14,
+      "market_cap_usd": 7179583.42962772
+    },
+    {
+      "chain": "ethereum",
+      "token_address": "0xf280b16ef293d8e534e370794ef26bf312694126",
+      "token_symbol": "ASTEROID",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 51813.16432321305,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 10,
+      "share_of_holdings_percent": 0.0001291837545897123,
+      "token_age_days": 744,
+      "market_cap_usd": 5544877.6324757
+    },
+    {
+      "chain": "ethereum",
+      "token_address": "0x75e2fc69ff2ac12af65ba7d321bbf4f878c535d2",
+      "token_symbol": "STOCKER",
+      "token_sectors": [],
+      "value_usd": 24221.94868961511,
+      "balance_24h_percent_change": 0.06750948294514,
+      "holders_count": 10,
+      "share_of_holdings_percent": 6.03916459470507e-05,
+      "token_age_days": 21,
+      "market_cap_usd": 700754.924921641
+    }
+  ],
+  "base": [
+    {
+      "chain": "base",
+      "token_address": "0x4200000000000000000000000000000000000006",
+      "token_symbol": "WETH",
+      "token_sectors": [
+        "L1/L2 Token & Derivatives"
+      ],
+      "value_usd": 202286.92748191417,
+      "balance_24h_percent_change": 6.5873440182050555e-06,
+      "holders_count": 34,
+      "share_of_holdings_percent": 0.0005043541566679209,
+      "token_age_days": 1197,
+      "market_cap_usd": 712188333.524086
+    },
+    {
+      "chain": "base",
+      "token_address": "0xb200000000000000000000cfbdf64a8706a94a01",
+      "token_symbol": "BLUECHIP",
+      "token_sectors": [
+        "Stablecoin Issuers"
+      ],
+      "value_usd": 446134.3545165416,
+      "balance_24h_percent_change": -0.1464402194970617,
+      "holders_count": 30,
+      "share_of_holdings_percent": 0.0011123294961949283,
+      "token_age_days": 1197,
+      "market_cap_usd": 10223580.4742623
+    },
+    {
+      "chain": "base",
+      "token_address": "0xb2000000000000000000004c27f6523082f41d01",
+      "token_symbol": "BASECAT",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 610414.0717565645,
+      "balance_24h_percent_change": 0.038126554564494305,
+      "holders_count": 27,
+      "share_of_holdings_percent": 0.0015219217485348334,
+      "token_age_days": 40,
+      "market_cap_usd": 19118003.9383604
+    },
+    {
+      "chain": "base",
+      "token_address": "0xa4a2e2ca3fbfe21aed83471d28b6f65a233c6e00",
+      "token_symbol": "TIBBIR",
+      "token_sectors": [
+        "Memecoins",
+        "AI Agents"
+      ],
+      "value_usd": 3419429.036243298,
+      "balance_24h_percent_change": -0.00028838897778867906,
+      "holders_count": 25,
+      "share_of_holdings_percent": 0.00852552989621379,
+      "token_age_days": 620,
+      "market_cap_usd": 237458428.25129
+    },
+    {
+      "chain": "base",
+      "token_address": "0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf",
+      "token_symbol": "VVV",
+      "token_sectors": [],
+      "value_usd": 434941.7779790165,
+      "balance_24h_percent_change": 0.028548974852522734,
+      "holders_count": 23,
+      "share_of_holdings_percent": 0.0010844234788818256,
+      "token_age_days": 609,
+      "market_cap_usd": 1490604340.09679
+    },
+    {
+      "chain": "base",
+      "token_address": "0x0f61edbfe6cd86024c0f210c0695b08df55fdfc9",
+      "token_symbol": "BSTONK",
+      "token_sectors": [
+        "RWAs"
+      ],
+      "value_usd": 197408.0272657386,
+      "balance_24h_percent_change": -0.016968813690106218,
+      "holders_count": 20,
+      "share_of_holdings_percent": 0.0004921897838405361,
+      "token_age_days": 38,
+      "market_cap_usd": 2537745.7404991
+    },
+    {
+      "chain": "base",
+      "token_address": "0xb20000000000000000000029440a9564b59129b1",
+      "token_symbol": "PLUMBER",
+      "token_sectors": [],
+      "value_usd": 218661.66158007775,
+      "balance_24h_percent_change": 0.0022830693840371315,
+      "holders_count": 19,
+      "share_of_holdings_percent": 0.0005451806465926301,
+      "token_age_days": 43,
+      "market_cap_usd": 2065483.57435863
+    },
+    {
+      "chain": "base",
+      "token_address": "0x940181a94a35a4569e4529a3cdfb74e38fd98631",
+      "token_symbol": "AERO",
+      "token_sectors": [
+        "Decentralised Exchanges"
+      ],
+      "value_usd": 1311411.8445061224,
+      "balance_24h_percent_change": -0.040458712120557856,
+      "holders_count": 18,
+      "share_of_holdings_percent": 0.0032696923281873617,
+      "token_age_days": 1123,
+      "market_cap_usd": 697379544.608431
+    },
+    {
+      "chain": "base",
+      "token_address": "0x56ab53b77f07da3af732150e8aec4783eb5bba7d",
+      "token_symbol": "UMIA",
+      "token_sectors": [],
+      "value_usd": 544226.919475468,
+      "balance_24h_percent_change": -0.005030175728811261,
+      "holders_count": 15,
+      "share_of_holdings_percent": 0.0013568998868331262,
+      "token_age_days": 30,
+      "market_cap_usd": 16749866.6315592
+    },
+    {
+      "chain": "base",
+      "token_address": "0x5ab000ff9b9ffe0349ce5ffa5fd86f217c3680f5",
+      "token_symbol": "STONKEX",
+      "token_sectors": [
+        "Decentralised Exchanges",
+        "NFTs",
+        "RWAs"
+      ],
+      "value_usd": 197098.7931139504,
+      "balance_24h_percent_change": -0.024480936805642964,
+      "holders_count": 15,
+      "share_of_holdings_percent": 0.0004914187823142411,
+      "token_age_days": 31,
+      "market_cap_usd": 8941456.43398447
+    }
+  ],
+  "solana": [
+    {
+      "chain": "solana",
+      "token_address": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+      "token_symbol": "STONK",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 47967916.788586475,
+      "balance_24h_percent_change": 0.023232674415678736,
+      "holders_count": 151,
+      "share_of_holdings_percent": 0.11944001582387766,
+      "token_age_days": 63,
+      "market_cap_usd": 302184206.816847
+    },
+    {
+      "chain": "solana",
+      "token_address": "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS",
+      "token_symbol": "ZEC",
+      "token_sectors": [
+        "Crypto Payments"
+      ],
+      "value_usd": 5119718.991622209,
+      "balance_24h_percent_change": -0.02209940250487022,
+      "holders_count": 135,
+      "share_of_holdings_percent": 0.012748089938286923,
+      "token_age_days": 349,
+      "market_cap_usd": 156868855.472735
+    },
+    {
+      "chain": "solana",
+      "token_address": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+      "token_symbol": "ZCAT",
+      "token_sectors": [
+        "Decentralised Exchanges"
+      ],
+      "value_usd": 12332447.290954074,
+      "balance_24h_percent_change": -0.003062326768939718,
+      "holders_count": 100,
+      "share_of_holdings_percent": 0.030707768821204587,
+      "token_age_days": 25,
+      "market_cap_usd": 76972461.4921458
+    },
+    {
+      "chain": "solana",
+      "token_address": "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump",
+      "token_symbol": "ANSEM",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 1572825.2865342777,
+      "balance_24h_percent_change": -0.007185753091104488,
+      "holders_count": 52,
+      "share_of_holdings_percent": 0.00391633178359224,
+      "token_age_days": 100,
+      "market_cap_usd": 156356715.851212
+    },
+    {
+      "chain": "solana",
+      "token_address": "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp",
+      "token_symbol": "CARDS",
+      "token_sectors": [
+        "NFTs",
+        "RWAs",
+        "NFTFi"
+      ],
+      "value_usd": 2534144.278484778,
+      "balance_24h_percent_change": -0.05171609926437618,
+      "holders_count": 50,
+      "share_of_holdings_percent": 0.006310014129990953,
+      "token_age_days": 394,
+      "market_cap_usd": 147843045.704408
+    },
+    {
+      "chain": "solana",
+      "token_address": "Xsv9hRk1z5ystj9MhnA7Lq4vjSsLwzL2nxrwmwtD3re",
+      "token_symbol": "GLDX",
+      "token_sectors": [
+        "Tokenized Stocks"
+      ],
+      "value_usd": 146842.7368654218,
+      "balance_24h_percent_change": 0.23848579089741662,
+      "holders_count": 49,
+      "share_of_holdings_percent": 0.00036563811791386156,
+      "token_age_days": 470,
+      "market_cap_usd": 12248145.3160157
+    },
+    {
+      "chain": "solana",
+      "token_address": "HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
+      "token_symbol": "GP",
+      "token_sectors": [
+        "GameFi",
+        "Crypto Payments"
+      ],
+      "value_usd": 5615166.4019148145,
+      "balance_24h_percent_change": -0.009618115035368448,
+      "holders_count": 48,
+      "share_of_holdings_percent": 0.013981752988238854,
+      "token_age_days": 16,
+      "market_cap_usd": 28015501.4785002
+    },
+    {
+      "chain": "solana",
+      "token_address": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+      "token_symbol": "PUMP",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 8430353.586873407,
+      "balance_24h_percent_change": -0.004020896127807032,
+      "holders_count": 47,
+      "share_of_holdings_percent": 0.020991563387147787,
+      "token_age_days": 441,
+      "market_cap_usd": 1840312979.39119
+    },
+    {
+      "chain": "solana",
+      "token_address": "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
+      "token_symbol": "CATE",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 6891607.832545716,
+      "balance_24h_percent_change": 0.0010469260578007886,
+      "holders_count": 43,
+      "share_of_holdings_percent": 0.01716008956984925,
+      "token_age_days": 60,
+      "market_cap_usd": 91157262.6264358
+    },
+    {
+      "chain": "solana",
+      "token_address": "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+      "token_symbol": "KNOTS",
+      "token_sectors": [
+        "NFTs"
+      ],
+      "value_usd": 984012.0233454918,
+      "balance_24h_percent_change": -0.09059132010889687,
+      "holders_count": 37,
+      "share_of_holdings_percent": 0.0024501879486923373,
+      "token_age_days": 19,
+      "market_cap_usd": 15536222.1929254
+    }
+  ],
+  "arbitrum": [
+    {
+      "chain": "arbitrum",
+      "token_address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+      "token_symbol": "WETH",
+      "token_sectors": [],
+      "value_usd": 487372.0445960527,
+      "balance_24h_percent_change": 4.2241464088299616e-06,
+      "holders_count": 17,
+      "share_of_holdings_percent": 0.0012135554056939802,
+      "token_age_days": 1943,
+      "market_cap_usd": 286377119.265533
+    },
+    {
+      "chain": "arbitrum",
+      "token_address": "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+      "token_symbol": "WBTC",
+      "token_sectors": [
+        "Decentralised Exchanges",
+        "Scaling & Connectivity",
+        "DeFi Lending (Money Markets)",
+        "Yield Farming Protocols"
+      ],
+      "value_usd": 230826.2966090046,
+      "balance_24h_percent_change": 2.659076518672209e-06,
+      "holders_count": 6,
+      "share_of_holdings_percent": 0.0005747570118806284,
+      "token_age_days": 1926,
+      "market_cap_usd": 618250998.508665
+    },
+    {
+      "chain": "arbitrum",
+      "token_address": "0x13a7dedb7169a17be92b0e3c7c2315b46f4772b3",
+      "token_symbol": "BOOP",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 13303.558517351375,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 6,
+      "share_of_holdings_percent": 3.3125833811578266e-05,
+      "token_age_days": 1010,
+      "market_cap_usd": 1169185.39548469
+    },
+    {
+      "chain": "arbitrum",
+      "token_address": "0x018d6a98555686be1ca5b6896ef6c42cf67e2bd1",
+      "token_symbol": "ODYS",
+      "token_sectors": [
+        "GameFi",
+        "NFTs"
+      ],
+      "value_usd": 4775.558475103945,
+      "balance_24h_percent_change": 1.746589891980081e-05,
+      "holders_count": 5,
+      "share_of_holdings_percent": 1.1891130947967037e-05,
+      "token_age_days": 44,
+      "market_cap_usd": 811661.064048166
+    },
+    {
+      "chain": "arbitrum",
+      "token_address": "0xe50fa9b3c56ffb159cb0fca61f5c9d750e8128c8",
+      "token_symbol": "AARBWETH",
+      "token_sectors": [
+        "DeFi Lending (Money Markets)",
+        "Yield Bearing"
+      ],
+      "value_usd": 604436.4074534605,
+      "balance_24h_percent_change": -0.008766987686466705,
+      "holders_count": 5,
+      "share_of_holdings_percent": 0.0015050454325326666,
+      "token_age_days": 1658,
+      "market_cap_usd": 6205294571.0
+    },
+    {
+      "chain": "arbitrum",
+      "token_address": "0x3212dc0f8c834e4de893532d27cc9b6001684db0",
+      "token_symbol": "PEAR",
+      "token_sectors": [
+        "Decentralised Exchanges",
+        "Perps, Options and Derivatives",
+        "Scaling & Connectivity",
+        "NFTFi"
+      ],
+      "value_usd": 303260.4245845606,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 3,
+      "share_of_holdings_percent": 0.0007551178440952086,
+      "token_age_days": 748,
+      "market_cap_usd": 20536866.9617477
+    },
+    {
+      "chain": "arbitrum",
+      "token_address": "0x8bc265393fa781105d0308f46023014b7cc5441d",
+      "token_symbol": "RHUB",
+      "token_sectors": [
+        "Decentralized Decision-Making",
+        "Legal Technology",
+        "Community Governance",
+        "Alternative Dispute Resolution",
+        "Incentive Mechanism"
+      ],
+      "value_usd": 1713.285951704307,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 3,
+      "share_of_holdings_percent": 4.266078555887604e-06,
+      "token_age_days": 18,
+      "market_cap_usd": 762481.0
+    },
+    {
+      "chain": "arbitrum",
+      "token_address": "0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a",
+      "token_symbol": "GMX",
+      "token_sectors": [
+        "Decentralised Exchanges",
+        "Perps, Options and Derivatives",
+        "Yield Farming Protocols"
+      ],
+      "value_usd": 11041.905319078194,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 3,
+      "share_of_holdings_percent": 2.7494321920402127e-05,
+      "token_age_days": 1890,
+      "market_cap_usd": 85517314.7899749
+    },
+    {
+      "chain": "arbitrum",
+      "token_address": "0x3e76bb02286bfeaa89dd35f11253f2cbce634f91",
+      "token_symbol": "PGOLD",
+      "token_sectors": [],
+      "value_usd": 1225.4106247889902,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 2,
+      "share_of_holdings_percent": 3.0512699782361727e-06,
+      "token_age_days": 345,
+      "market_cap_usd": 83938590.0
+    },
+    {
+      "chain": "arbitrum",
+      "token_address": "0x939727d85d99d0ac339bf1b76dfe30ca27c19067",
+      "token_symbol": "SIZE",
+      "token_sectors": [],
+      "value_usd": 361.1351243109404,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 2,
+      "share_of_holdings_percent": 8.992257294050361e-07,
+      "token_age_days": 1008,
+      "market_cap_usd": 62104.0
+    }
+  ],
+  "polygon": [
+    {
+      "chain": "polygon",
+      "token_address": "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
+      "token_symbol": "WETH",
+      "token_sectors": [],
+      "value_usd": 11740.825969632428,
+      "balance_24h_percent_change": 1.0187729664187789e-06,
+      "holders_count": 11,
+      "share_of_holdings_percent": 2.9234632927231084e-05,
+      "token_age_days": 2220,
+      "market_cap_usd": 239255316.688709
+    },
+    {
+      "chain": "polygon",
+      "token_address": "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",
+      "token_symbol": "WBTC",
+      "token_sectors": [
+        "Scaling & Connectivity",
+        "DeFi Lending (Money Markets)",
+        "Yield Farming Protocols"
+      ],
+      "value_usd": 62855.36609610191,
+      "balance_24h_percent_change": 1.3420215810490448e-08,
+      "holders_count": 2,
+      "share_of_holdings_percent": 0.00015650973450071452,
+      "token_age_days": 2208,
+      "market_cap_usd": 161892809.301844
+    },
+    {
+      "chain": "polygon",
+      "token_address": "0xd6df932a45c0f255f85145f286ea0b292b21c90b",
+      "token_symbol": "AAVE",
+      "token_sectors": [
+        "DeFi Lending (Money Markets)"
+      ],
+      "value_usd": 4595.163627086811,
+      "balance_24h_percent_change": 3.837714076599876e-06,
+      "holders_count": 2,
+      "share_of_holdings_percent": 1.144194814111979e-05,
+      "token_age_days": 2028,
+      "market_cap_usd": 2243422046.65576
+    },
+    {
+      "chain": "polygon",
+      "token_address": "0x127e47aba094a9a87d084a3a93732909ff031419",
+      "token_symbol": "GNUS",
+      "token_sectors": [
+        "Artificial Intelligence",
+        "DePIN"
+      ],
+      "value_usd": 6514.364726892031,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 2,
+      "share_of_holdings_percent": 1.6220754999467283e-05,
+      "token_age_days": 1629,
+      "market_cap_usd": 20880514.0
+    },
+    {
+      "chain": "polygon",
+      "token_address": "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270",
+      "token_symbol": "WMATIC",
+      "token_sectors": [
+        "L1/L2 Token & Derivatives"
+      ],
+      "value_usd": 342.5114882835885,
+      "balance_24h_percent_change": 2.5982376374548677e-07,
+      "holders_count": 1,
+      "share_of_holdings_percent": 8.52852913349486e-07,
+      "token_age_days": 2190,
+      "market_cap_usd": 19899583.975206
+    },
+    {
+      "chain": "polygon",
+      "token_address": "0x191c10aa4af7c30e871e70c95db0e4eb77237530",
+      "token_symbol": "APOLLINK",
+      "token_sectors": [
+        "Scaling & Connectivity",
+        "DeFi Lending (Money Markets)",
+        "Yield Bearing"
+      ],
+      "value_usd": 2362.8260373489084,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 1,
+      "share_of_holdings_percent": 5.883432055927317e-06,
+      "token_age_days": 1658,
+      "market_cap_usd": null
+    },
+    {
+      "chain": "polygon",
+      "token_address": "0xba777ae3a3c91fcd83ef85bfe65410592bdd0f7c",
+      "token_symbol": "CONE",
+      "token_sectors": [],
+      "value_usd": 339.82916292813195,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 1,
+      "share_of_holdings_percent": 8.461739286374222e-07,
+      "token_age_days": 1465,
+      "market_cap_usd": 146682.0
+    },
+    {
+      "chain": "polygon",
+      "token_address": "0x553d3d295e0f695b9228246232edf400ed3560b5",
+      "token_symbol": "PAXG",
+      "token_sectors": [],
+      "value_usd": 111.8597060032857,
+      "balance_24h_percent_change": 1.5475415220880723e-05,
+      "holders_count": 1,
+      "share_of_holdings_percent": 2.785304417944988e-07,
+      "token_age_days": 2033,
+      "market_cap_usd": 936711.611483694
+    },
+    {
+      "chain": "polygon",
+      "token_address": "0xdf7837de1f2fa4631d716cf2502f8b230f1dcc32",
+      "token_symbol": "TEL",
+      "token_sectors": [
+        "Crypto Payments"
+      ],
+      "value_usd": 97717.39536547304,
+      "balance_24h_percent_change": 0.2016462803597333,
+      "holders_count": 1,
+      "share_of_holdings_percent": 0.00024331611689872894,
+      "token_age_days": 2038,
+      "market_cap_usd": 162548498.346206
+    },
+    {
+      "chain": "polygon",
+      "token_address": "0xe5417af564e4bfda1c483642db72007871397896",
+      "token_symbol": "GNS",
+      "token_sectors": [
+        "Decentralised Exchanges",
+        "Perps, Options and Derivatives",
+        "Yield Farming Protocols"
+      ],
+      "value_usd": 1067.1776283482266,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 1,
+      "share_of_holdings_percent": 2.657270137008102e-06,
+      "token_age_days": 1793,
+      "market_cap_usd": 11140112.0
+    }
+  ],
+  "avalanche": [
+    {
+      "chain": "avalanche",
+      "token_address": "0x49d5c2bdffac6ce2bfdb6640f4f80f226bc10bab",
+      "token_symbol": "WETH.E",
+      "token_sectors": [
+        "L1/L2 Token & Derivatives"
+      ],
+      "value_usd": 2221.665790838446,
+      "balance_24h_percent_change": 0.0003347469617767159,
+      "holders_count": 5,
+      "share_of_holdings_percent": 5.5319433275086616e-06,
+      "token_age_days": 1889,
+      "market_cap_usd": 37948030.114177
+    },
+    {
+      "chain": "avalanche",
+      "token_address": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
+      "token_symbol": "WAVAX",
+      "token_sectors": [
+        "L1/L2 Token & Derivatives"
+      ],
+      "value_usd": 8549.696909683542,
+      "balance_24h_percent_change": 0.011164917805541305,
+      "holders_count": 5,
+      "share_of_holdings_percent": 2.128872801966125e-05,
+      "token_age_days": 2113,
+      "market_cap_usd": 187662805.133194
+    },
+    {
+      "chain": "avalanche",
+      "token_address": "0x420fca0121dc28039145009570975747295f2329",
+      "token_symbol": "COQ",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 2838.730100430847,
+      "balance_24h_percent_change": 0.0002759634890419891,
+      "holders_count": 2,
+      "share_of_holdings_percent": 7.068432210836679e-06,
+      "token_age_days": 1022,
+      "market_cap_usd": 8874755.24427178
+    },
+    {
+      "chain": "avalanche",
+      "token_address": "0xffff003a6bad9b743d658048742935fffe2b6ed7",
+      "token_symbol": "KET",
+      "token_sectors": [],
+      "value_usd": 34926.57530721137,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 2,
+      "share_of_holdings_percent": 8.696710190173992e-05,
+      "token_age_days": 617,
+      "market_cap_usd": 1572351.0
+    },
+    {
+      "chain": "avalanche",
+      "token_address": "0x184ff13b3ebcb25be44e860163a5d8391dd568c1",
+      "token_symbol": "KIMBO",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 127.7423323254519,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 1,
+      "share_of_holdings_percent": 3.180781492258052e-07,
+      "token_age_days": 1012,
+      "market_cap_usd": 262825.0
+    },
+    {
+      "chain": "avalanche",
+      "token_address": "0x152b9d0fdc40c096757f570a51e494bd4b943e50",
+      "token_symbol": "BTC.B",
+      "token_sectors": [
+        "BRC20s/Bitcoin Ecosystem",
+        "Scaling & Connectivity",
+        "DeFi Lending (Money Markets)",
+        "Yield Bearing"
+      ],
+      "value_usd": 265.862444540473,
+      "balance_24h_percent_change": 0.006275106823938797,
+      "holders_count": 1,
+      "share_of_holdings_percent": 6.619969493952385e-07,
+      "token_age_days": 1589,
+      "market_cap_usd": 169113180.216296
+    },
+    {
+      "chain": "avalanche",
+      "token_address": "0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590",
+      "token_symbol": "STG",
+      "token_sectors": [
+        "Scaling & Connectivity",
+        "Yield Farming Protocols"
+      ],
+      "value_usd": 327.07425784426476,
+      "balance_24h_percent_change": 4.003105198969264e-06,
+      "holders_count": 1,
+      "share_of_holdings_percent": 8.14414240765973e-07,
+      "token_age_days": 1652,
+      "market_cap_usd": 17762929.0645417
+    },
+    {
+      "chain": "avalanche",
+      "token_address": "0x50b7545627a5162f82a992c33b87adc75187b218",
+      "token_symbol": "WBTC.E",
+      "token_sectors": [
+        "BRC20s/Bitcoin Ecosystem"
+      ],
+      "value_usd": 695.327332435856,
+      "balance_24h_percent_change": 0.00014335384832190958,
+      "holders_count": 1,
+      "share_of_holdings_percent": 1.7313636519790295e-06,
+      "token_age_days": 1889,
+      "market_cap_usd": 26523871.313433
+    },
+    {
+      "chain": "avalanche",
+      "token_address": "0xe508ff190ce1d94edd1a28256eaeedfab7cc2222",
+      "token_symbol": "SUMMIT",
+      "token_sectors": [],
+      "value_usd": 217.79900445704732,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 1,
+      "share_of_holdings_percent": 5.423190807603365e-07,
+      "token_age_days": 4,
+      "market_cap_usd": 20669.0
+    },
+    {
+      "chain": "avalanche",
+      "token_address": "0x3419875b4d3bca7f3fdda2db7a476a79fd31b4fe",
+      "token_symbol": "DZHV",
+      "token_sectors": [
+        "Memecoins"
+      ],
+      "value_usd": 1041.2639887920814,
+      "balance_24h_percent_change": 0.0,
+      "holders_count": 1,
+      "share_of_holdings_percent": 2.5927452269045072e-06,
+      "token_age_days": 970,
+      "market_cap_usd": 362892.0
+    }
+  ]
+}
